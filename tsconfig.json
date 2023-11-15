@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@/": ["src/*"],
+      "@/configs": ["configs/index.ts"],
+      "@/configs/*": ["configs/*"],
+      "@/routes": ["routes/index.ts"],
+      "@/routes/*": ["routes/*"],
+      "@/controllers": ["controllers/index.ts"],
+      "@/controllers/*": ["controllers/*"],
+      "@/models": ["models/index.ts"],
+      "@/models/*": ["models/*"],
+      "@/services": ["services/index.ts"],
+      "@/services/*": ["services/*"],
+      "@/interfaces": ["interfaces/index.ts"],
+      "@/interfaces/*": ["interfaces/*"],
+      "@/utils": ["utils/index.ts"],
+      "@/utils/*": ["utils/*"],
+      "@/middlewares": ["middlewares/index.ts"],
+      "@/middlewares/*": ["middlewares/*"],
+      "@/enums": ["enums/index.ts"],
+      "@/enums/*": ["enums/*"]
+    },
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"]
+}
