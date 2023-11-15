@@ -15,7 +15,7 @@ const formBuilderStructure = new Schema({
   },
 });
 
-export const formStructure = model(
+export const FormStructure = model(
   "form-builder-structure",
   formBuilderStructure
 );
