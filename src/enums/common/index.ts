@@ -12,6 +12,8 @@ export enum httpStatusCode {
 
 export enum responseMessage {
   SUCCESS = "success",
+  FAILED = "failed",
+  FORM_CREATED = "Form Created Successfully",
   REGISTER_SUCCESS = "You are registered successfully",
   LOGIN_SUCCESS = "You are logged in successfully",
   UNAUTHORIZED = "Unauthorized User!",
