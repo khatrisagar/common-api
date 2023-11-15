@@ -8,10 +8,9 @@ export const createForm = (req: Request, res: Response) => {
       res,
       statusCode: httpStatusCode.OK,
       data: {},
-      message: responseMessage.LOGIN_SUCCESS,
+      message: responseMessage.ITEM_NOT_FOUND,
     }).success();
   } catch (error) {
-    console.log("Errrr");
     return new APIResponse({
       res,
       statusCode: httpStatusCode.INTERNAL_SERVER_ERROR,

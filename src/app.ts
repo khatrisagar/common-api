@@ -1,11 +1,12 @@
 import express, { Application, Request, Response } from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import { connectMongoDb } from "@/configs";
+import { config } from "dotenv";
 
-dotenv.config();
 const app: Application = express();
-const PORT = process.env.PORT || 9999;
+
+config();
+
 connectMongoDb();
 
 app.use(cors());
@@ -18,6 +19,4 @@ import { formBuilderRoutes } from "@/routes";
 // formbuilder
 app.use("/form-builder", formBuilderRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server Listening on the PORT => ${PORT}`);
-});
+export default app;
