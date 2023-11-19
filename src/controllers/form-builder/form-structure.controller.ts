@@ -1,6 +1,6 @@
 import { httpStatusCode, responseMessage } from "@/enums";
 import { createFromDb, getFormStructureDb } from "@/services";
-import { APIResponse } from "@/utils/helpers/common/response.helper";
+import { APIResponse } from "@/utils";
 import { Request, Response } from "express";
 
 export const createForm = async (req: Request, res: Response) => {

@@ -1,7 +1,4 @@
-import {
-  createForm,
-  getFormStructure,
-} from "@/controllers/form-builder/create-form.controller";
+import { createForm, getFormStructure } from "@/controllers";
 import express from "express";
 
 const router = express.Router();
