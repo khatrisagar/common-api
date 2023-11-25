@@ -1,7 +1,7 @@
 import { Response, response } from "express";
 import { paginationInterface } from "@/interfaces";
 import { responseMessage } from "@/enums";
-export class APIResponse {
+export class APIResponsee {
   res: Response;
   statusCode: number;
   responseData: Array<any> | object | null;

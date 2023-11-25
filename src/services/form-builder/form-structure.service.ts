@@ -1,6 +1,6 @@
 import { FormStructure } from "@/models";
 
-export const createFromDb = (formStructureData: any) => {
+export const createFormDb = (formStructureData: any) => {
   try {
     return FormStructure.create(formStructureData);
   } catch (error) {

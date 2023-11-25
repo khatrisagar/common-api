@@ -29,4 +29,5 @@ export enum responseMessage {
   PROJECT_ADDED_SUUCESS = "Project Added Successfully",
   INVALID_EMAIL_PASSWORD = "Invalid Email Password",
   CONTACT_UPDATED = "Contact Updated Successfully",
+  FORM_SAVED = "Form Saved Successfully",
 }
