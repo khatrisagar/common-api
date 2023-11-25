@@ -1,1 +1,1 @@
-export * from "@/models/form-builder/form-builder.model";
+export * from "@/models/form-builder/form-structure.model";
