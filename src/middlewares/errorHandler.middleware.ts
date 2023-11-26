@@ -25,12 +25,12 @@ export const errorHandler = (
 
     return res
       .status(err.statusCode || httpStatusCode.INTERNAL_SERVER_ERROR)
-      .send(errorResponse);
+      .json(errorResponse);
   }
   next();
 
   // Handle other types of errors
-  return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
+  return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).send({
     message: err.message || responseMessage.SOMETHING_WENT_WRONG,
     type: responseMessage.FAILED,
     statusCode: httpStatusCode.INTERNAL_SERVER_ERROR,
