@@ -2,8 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { ApiError, ApiResponse } from "@/utils";
 import { httpStatusCode, responseMessage } from "@/enums";
 import { saveFormDb } from "@/services";
-import { apiErrorResponseInterface } from "@/interfaces";
-import mongoose from "mongoose";
 
 export const saveFormData = async (
   req: Request,
