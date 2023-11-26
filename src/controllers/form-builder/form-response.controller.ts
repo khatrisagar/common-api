@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { ApiError, ApiResponse } from "@/utils";
 import { httpStatusCode, responseMessage } from "@/enums";
 import { saveFormDb } from "@/services";
-import { apiErrorResponseInterface } from "@/interfaces";
 
 export const saveFormData = async (
   req: Request,
@@ -23,9 +22,12 @@ export const saveFormData = async (
     if (error instanceof ApiError) {
       return next(new ApiError(error.statusCode, error.message));
     } else {
-      new ApiError(
-        httpStatusCode.INTERNAL_SERVER_ERROR,
-        responseMessage.SOMETHING_WENT_WRONG
+      return next(
+        new ApiError(
+          httpStatusCode.INTERNAL_SERVER_ERROR,
+          (error as Error).message,
+          error
+        )
       );
     }
   }

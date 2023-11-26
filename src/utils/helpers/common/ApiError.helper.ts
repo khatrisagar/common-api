@@ -5,10 +5,12 @@ class ApiError extends Error {
   data: null;
   type: string;
   stack?: string;
+  errors: any;
 
   constructor(
     statusCode: number,
     message: string = responseMessage.SOMETHING_WENT_WRONG,
+    error?: any,
     stack: string = ""
   ) {
     super(message);
@@ -16,6 +18,7 @@ class ApiError extends Error {
     this.data = null;
     this.type = responseMessage.FAILED;
     this.message = message ?? responseMessage.SOMETHING_WENT_WRONG;
+    this.errors = error.errors;
     if (stack) {
       this.stack = stack;
     } else {
