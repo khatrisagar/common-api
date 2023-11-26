@@ -1,11 +1,17 @@
-import { Request, Response } from "express";
-import { ApiResponse } from "@/utils";
+import { NextFunction, Request, Response } from "express";
+import { ApiError, ApiResponse } from "@/utils";
 import { httpStatusCode, responseMessage } from "@/enums";
 import { saveFormDb } from "@/services";
+import { apiErrorResponseInterface } from "@/interfaces";
 
-export const saveFormData = async (req: Request, res: Response) => {
+export const saveFormData = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const savedData = await saveFormDb(req.body);
+
     const apiResponse = new ApiResponse({
       res,
       statusCode: httpStatusCode.CREATED,
@@ -14,7 +20,13 @@ export const saveFormData = async (req: Request, res: Response) => {
     });
     apiResponse.send();
   } catch (error) {
-    res.end("aaa");
-    console.log("Error", error);
+    if (error instanceof ApiError) {
+      return next(new ApiError(error.statusCode, error.message));
+    } else {
+      new ApiError(
+        httpStatusCode.INTERNAL_SERVER_ERROR,
+        responseMessage.SOMETHING_WENT_WRONG
+      );
+    }
   }
 };

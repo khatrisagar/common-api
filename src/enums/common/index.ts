@@ -10,6 +10,11 @@ export enum httpStatusCode {
   INTERNAL_SERVER_ERROR = 500,
 }
 
+export enum nodeEnvironmentTypes {
+  DEVELOPEMENT = "development",
+  PRDUCTION = "production",
+}
+
 export enum responseMessage {
   SUCCESS = "success",
   FAILED = "failed",
