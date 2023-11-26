@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import cors from "cors";
 import { connectMongoDb } from "@/configs";
 import { config } from "dotenv";
@@ -18,5 +18,9 @@ import { formBuilderRoutes } from "@/routes";
 
 // formbuilder
 app.use("/form-builder", formBuilderRoutes);
+
+// global error handler
+import { errorHandler } from "@/middlewares";
+app.use(errorHandler);
 
 export default app;
