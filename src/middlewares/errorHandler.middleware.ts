@@ -8,29 +8,23 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.setHeader("Content-Type", "application/json");
-
   if (err instanceof ApiError) {
     const errorResponse: any = {
       message: err.message,
       type: err.type,
       statusCode: err.statusCode,
     };
-    console.log("restypeeee", res.getHeader("Content-Type"));
 
     if (process.env.NODE_ENV === nodeEnvironmentTypes.DEVELOPEMENT) {
       errorResponse.errors = err?.errors;
       errorResponse.stack = err.stack;
     }
-    res.setHeader("Content-Type", "application/json");
     return res
       .status(err.statusCode || httpStatusCode.INTERNAL_SERVER_ERROR)
       .json(errorResponse);
   }
-  next();
 
   // Handle other types of errors
-  res.setHeader("Content-Type", "application/json");
   return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
     message: err.message || responseMessage.SOMETHING_WENT_WRONG,
     type: responseMessage.FAILED,
