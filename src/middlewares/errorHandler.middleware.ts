@@ -8,7 +8,10 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.setHeader("Content-Type", "application/json");
+  // res.setHeader("Content-Type", "application/json");
+  if (res.headersSent) {
+    return next(err);
+  }
   if (err instanceof ApiError) {
     const errorResponse: any = {
       message: err.message,
