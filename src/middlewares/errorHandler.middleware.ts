@@ -22,7 +22,7 @@ export const errorHandler = (
       errorResponse.errors = err?.errors;
       errorResponse.stack = err.stack;
     }
-
+    res.setHeader("Content-Type", "application/json");
     return res
       .status(err.statusCode || httpStatusCode.INTERNAL_SERVER_ERROR)
       .json(errorResponse);
@@ -30,6 +30,7 @@ export const errorHandler = (
   next();
 
   // Handle other types of errors
+  res.setHeader("Content-Type", "application/json");
   return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).send({
     message: err.message || responseMessage.SOMETHING_WENT_WRONG,
     type: responseMessage.FAILED,
