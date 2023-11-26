@@ -31,7 +31,7 @@ export const errorHandler = (
 
   // Handle other types of errors
   res.setHeader("Content-Type", "application/json");
-  return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).send({
+  return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
     message: err.message || responseMessage.SOMETHING_WENT_WRONG,
     type: responseMessage.FAILED,
     statusCode: httpStatusCode.INTERNAL_SERVER_ERROR,
