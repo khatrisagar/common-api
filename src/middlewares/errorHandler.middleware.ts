@@ -8,12 +8,14 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  res.setHeader("Content-Type", "application/json");
   if (err instanceof ApiError) {
     const errorResponse: any = {
       message: err.message,
       type: err.type,
       statusCode: err.statusCode,
     };
+
     if (process.env.NODE_ENV === nodeEnvironmentTypes.DEVELOPEMENT) {
       errorResponse.errors = err?.errors;
       errorResponse.stack = err.stack;

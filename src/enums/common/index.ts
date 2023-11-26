@@ -12,7 +12,7 @@ export enum httpStatusCode {
 
 export enum nodeEnvironmentTypes {
   DEVELOPEMENT = "development",
-  PRDUCTION = "production",
+  PRDUCTION = "prod",
 }
 
 export enum responseMessage {
