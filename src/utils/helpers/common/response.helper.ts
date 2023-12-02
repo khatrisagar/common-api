@@ -5,7 +5,7 @@ export class APIResponsee {
   res: Response;
   statusCode: number;
   responseData: Array<any> | object | null;
-  responseType?: string;
+  type?: string;
   message?: string;
   pagination?: paginationInterface;
 
@@ -15,13 +15,13 @@ export class APIResponsee {
     this.res = responseInfo.res;
     this.message = responseInfo.message;
     this.pagination = responseInfo.pagination;
-    this.responseType = responseInfo.responseType;
+    this.type = responseInfo.responseType;
   }
 
   success() {
     let apiResponse: any = {
       data: this.responseData ?? [],
-      responseType: this.responseType ?? responseMessage.SUCCESS,
+      type: this.type ?? responseMessage.SUCCESS,
       message: this.message ?? responseMessage.SUCCESS,
     };
     if (this.pagination)
@@ -33,7 +33,7 @@ export class APIResponsee {
   failed(error?: Error) {
     let errorResponse: any = {
       error: error?.message,
-      responseType: this.responseType ?? responseMessage.FAILED,
+      type: this.type ?? responseMessage.FAILED,
       message: this.message ?? responseMessage.SOMETHING_WENT_WRONG,
     };
     return this.res.status(this.statusCode).json(errorResponse);
