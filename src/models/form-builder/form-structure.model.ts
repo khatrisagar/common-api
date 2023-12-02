@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const formBuilderStructure = new Schema(
   {
-    name: {
+    title: {
       type: String,
       required: true,
     },
