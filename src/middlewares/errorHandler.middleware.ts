@@ -17,7 +17,7 @@ export const errorHandler = (
 
     if (process.env.NODE_ENV === nodeEnvironmentTypes.DEVELOPEMENT) {
       errorResponse.errors = err?.errors;
-      errorResponse.stack = err.stack;
+      errorResponse.stack = err?.stack;
     }
     return res
       .status(err.statusCode || httpStatusCode.INTERNAL_SERVER_ERROR)

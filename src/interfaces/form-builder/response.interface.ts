@@ -2,7 +2,7 @@ import { Response } from "express";
 import { paginationInterface } from "@/interfaces/common";
 
 export interface commonApiResponseInterface {
-  data: Array<any> | object | null;
+  data?: Array<any> | object | null;
   type?: string;
   message?: string;
   pagination?: paginationInterface;

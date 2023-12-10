@@ -1,6 +1,7 @@
 import { httpStatusCode, responseMessage } from "@/enums";
 import {
   createFormDb,
+  deleteFormStructureDb,
   getFormStructureByIdDb,
   getFormStructureDb,
 } from "@/services";
@@ -71,5 +72,40 @@ export const getFormStructureById = async (req: Request, res: Response) => {
       statusCode: httpStatusCode.INTERNAL_SERVER_ERROR,
       message: responseMessage.SOMETHING_WENT_WRONG,
     }).failed(error as Error);
+  }
+};
+
+export const deleteFormStructure = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const formId = req.params.formId;
+    const formStructure = await getFormStructureByIdDb(formId);
+    if (!formStructure)
+      throw new ApiError(
+        httpStatusCode.RESOURCE_NOT_FOUND,
+        responseMessage.FORM_NOT_FOUND
+      );
+    await deleteFormStructureDb(formId);
+    const apiResponse = new ApiResponse({
+      res,
+      statusCode: httpStatusCode.OK,
+      message: responseMessage.FORM_DELETED,
+    });
+    apiResponse.send();
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return next(new ApiError(error.statusCode, error.message));
+    } else {
+      return next(
+        new ApiError(
+          httpStatusCode.INTERNAL_SERVER_ERROR,
+          (error as Error).message,
+          error
+        )
+      );
+    }
   }
 };

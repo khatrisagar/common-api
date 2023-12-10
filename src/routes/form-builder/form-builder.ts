@@ -1,5 +1,6 @@
 import {
   createForm,
+  deleteFormStructure,
   getFormStructure,
   getFormStructureById,
   saveFormData,
@@ -12,6 +13,7 @@ const router = express.Router();
 router.get("/form", getFormStructure);
 router.get("/form/:id", getFormStructureById);
 router.post("/create-form", createForm);
+router.delete("/form/:formId", deleteFormStructure);
 
 // form response routes
 router.post("/save-form", saveFormData);

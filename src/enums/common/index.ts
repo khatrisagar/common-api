@@ -19,6 +19,8 @@ export enum responseMessage {
   SUCCESS = "success",
   FAILED = "failed",
   FORM_CREATED = "Form Created Successfully",
+  FORM_DELETED = "Form Deleted Successfully",
+  FORM_NOT_FOUND = "Form Not Found",
   REGISTER_SUCCESS = "You are registered successfully",
   LOGIN_SUCCESS = "You are logged in successfully",
   UNAUTHORIZED = "Unauthorized User!",

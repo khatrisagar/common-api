@@ -21,3 +21,11 @@ export const getFormStructureByIdDb = (formId: string) => {
     throw new Error((error as Error).message);
   }
 };
+
+export const deleteFormStructureDb = (formId: string) => {
+  try {
+    return FormStructure.findByIdAndDelete(formId);
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
