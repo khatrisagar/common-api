@@ -7,7 +7,14 @@ export const createFormDb = (formStructureData: any) => {
     throw new Error((error as Error).message);
   }
 };
-export const getFormStructureDb = (formId: string) => {
+export const getFormStructureDb = () => {
+  try {
+    return FormStructure.find();
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+export const getFormStructureByIdDb = (formId: string) => {
   try {
     return FormStructure.findById(formId);
   } catch (error) {
