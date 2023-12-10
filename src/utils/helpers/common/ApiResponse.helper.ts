@@ -14,7 +14,7 @@ export class ApiResponse {
   constructor(responseInfo: commonApiResponseDataInterface) {
     this.res = responseInfo.res;
     this.statusCode = responseInfo.statusCode ?? httpStatusCode.OK;
-    this.data = responseInfo.data;
+    this.data = responseInfo.data ?? null;
     this.message = responseInfo.message ?? "";
     this.type = responseInfo.type ?? responseMessage.SUCCESS;
 
