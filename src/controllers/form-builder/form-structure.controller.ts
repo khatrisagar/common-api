@@ -36,9 +36,8 @@ export const getFormStructure = async (
 
     const apiResponse = new ApiResponse({
       res,
-      statusCode: httpStatusCode.CREATED,
+      statusCode: httpStatusCode.OK,
       data: allFormStructure,
-      message: responseMessage.FORM_SAVED,
     });
     apiResponse.send();
   } catch (error) {
@@ -56,22 +55,38 @@ export const getFormStructure = async (
   }
 };
 
-export const getFormStructureById = async (req: Request, res: Response) => {
+export const getFormStructureById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const formId = req.params.id;
     const formStructure = await getFormStructureByIdDb(formId);
+
+    if (!formStructure)
+      throw new ApiError(
+        httpStatusCode.RESOURCE_NOT_FOUND,
+        responseMessage.FORM_NOT_FOUND
+      );
     return new APIResponsee({
       res,
       statusCode: httpStatusCode.OK,
       data: formStructure,
-      message: responseMessage.FORM_CREATED,
+      message: "",
     }).success();
   } catch (error) {
-    return new APIResponsee({
-      res,
-      statusCode: httpStatusCode.INTERNAL_SERVER_ERROR,
-      message: responseMessage.SOMETHING_WENT_WRONG,
-    }).failed(error as Error);
+    if (error instanceof ApiError) {
+      return next(new ApiError(error.statusCode, error.message));
+    } else {
+      return next(
+        new ApiError(
+          httpStatusCode.INTERNAL_SERVER_ERROR,
+          (error as Error).message,
+          error
+        )
+      );
+    }
   }
 };
 
